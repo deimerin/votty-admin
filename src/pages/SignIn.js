@@ -15,8 +15,10 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { UserAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+import JSEncrypt from 'jsencrypt';
 
 function Copyright(props) {
   return (
@@ -40,6 +42,26 @@ const theme = createTheme();
 
 export default function SignInSide() {
 
+  // RSA TEST
+
+  const publicKey = process.env.REACT_APP_FIREBASE_PUBLIC_KEY;
+  const privateKey = process.env.REACT_APP_FIREBASE_PRIVATE_KEY;
+
+    const encrypt = new JSEncrypt();
+
+    encrypt.setPublicKey(publicKey);
+    const encrypted = encrypt.encrypt('hello');
+
+    const decrypt = new JSEncrypt();
+    decrypt.setPrivateKey(privateKey);
+
+    const uncrypted = decrypt.decrypt(encrypted);
+    console.log(uncrypted)
+
+
+
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
@@ -58,6 +80,7 @@ export default function SignInSide() {
     } catch(e){
       setError(e.message)
       console.log(e.message)
+      console.log(process.env.REACT_APP_FIREBASE_PRIVATE_KEY)
     }
 
     console.log(email, password);
