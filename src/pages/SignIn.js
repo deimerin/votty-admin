@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 
-import Image from 'mui-image'
-import logo from '../assets/1.png'
+import Image from "mui-image";
+import logo from "../assets/1.png";
 
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
@@ -15,10 +15,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { UserAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-import JSEncrypt from 'jsencrypt';
+//import JSEncrypt from "jsencrypt";
+//import sha256 from 'crypto-js/sha256';
+//import Base64 from 'crypto-js/enc-base64';
 
 function Copyright(props) {
   return (
@@ -41,49 +43,41 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-
   // RSA TEST
 
-  const publicKey = process.env.REACT_APP_FIREBASE_PUBLIC_KEY;
-  const privateKey = process.env.REACT_APP_FIREBASE_PRIVATE_KEY;
+  // const publicKey = process.env.REACT_APP_FIREBASE_PUBLIC_KEY;
+  // const privateKey = process.env.REACT_APP_FIREBASE_PRIVATE_KEY;
 
-    const encrypt = new JSEncrypt();
-
-    encrypt.setPublicKey(publicKey);
-    const encrypted = encrypt.encrypt('hello');
-
-    const decrypt = new JSEncrypt();
-    decrypt.setPrivateKey(privateKey);
-
-    const uncrypted = decrypt.decrypt(encrypted);
-    console.log(uncrypted)
-
-
-
-
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('')
-  const navigate = useNavigate()
-
-  const { signIn } = UserAuth()
+  // const encrypt = new JSEncrypt();
+  // encrypt.setPublicKey(publicKey);
+  // const encrypted = encrypt.encrypt("hello");
+  // const decrypt = new JSEncrypt();
+  // decrypt.setPrivateKey(privateKey);
+  // const uncrypted = decrypt.decrypt(encrypted);
+  // console.log(uncrypted);
+  // console.log( sha256('hello worlds').toString(Base64) )
   
-  const handleSubmit = async(e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { signIn } = UserAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('')
+    setError("");
 
-    try{
+    try {
       await signIn(email, password);
-      navigate('/main')
-
-    } catch(e){
-      setError(e.message)
-      console.log(e.message)
-      console.log(process.env.REACT_APP_FIREBASE_PRIVATE_KEY)
+      navigate("/main");
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+      // console.log(process.env.REACT_APP_FIREBASE_PRIVATE_KEY);
     }
 
-    console.log(email, password);
+    // console.log(email, password);
   };
 
   return (
@@ -96,7 +90,8 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/1600x900/?democracy)",
+            backgroundImage:
+              "url(https://source.unsplash.com/1600x900/?democracy)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -116,7 +111,7 @@ export default function SignInSide() {
               alignItems: "center",
             }}
           >
-            <Image src={logo} width={300}/>
+            <Image src={logo} width={300} />
 
             <Typography component="h1" variant="h5">
               Sistema de Gestion y Conteo
@@ -137,7 +132,9 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={(e) => { setEmail(e.target.value) }}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
 
               <TextField
@@ -149,7 +146,9 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(e) => { setPassword(e.target.value) }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
 
               <Button

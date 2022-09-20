@@ -17,13 +17,12 @@ export default function Main() {
           <img src={logo} height={270} alt='app-logo' />
 
           <Typography variant="body1" gutterBottom>
-            Bienvenido al modulo de gestion y conteo de Votty. En este modulo
-            podra realizar las siguientes funciones:
+          Bienvenido al módulo de gestión y conteo de Votty. En este módulo podrá realizar las siguientes funciones:
           </Typography>
 
           <List>
             <ListItem>Definir la lista de votantes autorizados</ListItem>
-            <ListItem>Definir la lista de candidatos eleguibles</ListItem>
+            <ListItem>Definir la lista de candidatos elegibles</ListItem>
             <ListItem>Realizar el conteo de votos</ListItem>
           </List>
 

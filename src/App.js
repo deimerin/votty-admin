@@ -6,6 +6,8 @@ import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // #3734a8
+// var buf = crypto.randomBytes(16).toString('Base64');
+// var Crypto = require('crypto')
 
 function App() {
   return (
