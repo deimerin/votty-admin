@@ -56,7 +56,7 @@ export default function SignInSide() {
   // const uncrypted = decrypt.decrypt(encrypted);
   // console.log(uncrypted);
   // console.log( sha256('hello worlds').toString(Base64) )
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -114,7 +114,7 @@ export default function SignInSide() {
             <Image src={logo} width={300} />
 
             <Typography component="h1" variant="h5">
-              Sistema de Gestion y Conteo
+              Sistema de Gestión y Conteo
             </Typography>
 
             <Box
